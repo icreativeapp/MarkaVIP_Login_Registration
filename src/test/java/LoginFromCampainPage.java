@@ -110,7 +110,7 @@ driver.get("http://markavip.com");
 	Actions builder = new Actions(driver);
 	builder.moveToElement(productbox).build().perform();
 
-	driver.findElement(By.className("hover-view")).click();
+	driver.findElement(By.cssSelector("div.product-image")).click();
 	
 	//Wait until showing the login pop-up
 	wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("fb-login-section")));
