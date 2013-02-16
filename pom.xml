@@ -62,6 +62,9 @@
             <include>**/*Login.java</include>
             <include>**/Login*.java</include>
             <include>**/*Login*.java</include>
+            <include>**/*Regist.java</include>
+            <include>**/Regist*.java</include>
+            <include>**/*Regist*.java</include>
           </includes>
                     <redirectTestOutputToFile>true</redirectTestOutputToFile>
                 </configuration>
