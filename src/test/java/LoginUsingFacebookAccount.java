@@ -93,7 +93,6 @@ public class LoginUsingFacebookAccount implements SauceOnDemandSessionIdProvider
         SessionId sessionId = ((RemoteWebDriver)driver).getSessionId();
         return (sessionId == null) ? null : sessionId.toString();
 
-sessionId="facebook";
 
     }
 
