@@ -101,6 +101,9 @@ driver.get("http://markavip.com");
 	
 	wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("itemscount")));
 	
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("ul.products-grid")));
+	wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("item-link")));
+
 	//Add Action Builder to hover the item's box
 	WebElement productbox=driver.findElement(By.className("item-link"));
 	//Hover the product's box

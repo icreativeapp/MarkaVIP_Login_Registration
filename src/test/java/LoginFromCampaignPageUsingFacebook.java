@@ -108,6 +108,10 @@ public class LoginFromCampaignPageUsingFacebook implements SauceOnDemandSessionI
 	
 	wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("itemscount")));
 	
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("ul.products-grid")));
+	wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("item-link")));
+
 	//Add Action Builder to hover the item's box
 	WebElement productbox=driver.findElement(By.className("item-link"));
 	//Hover the product's box
@@ -119,8 +123,8 @@ public class LoginFromCampaignPageUsingFacebook implements SauceOnDemandSessionI
 	//Save Current Window Name
 		String markavipwindow= driver.getWindowHandle();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("login-form")));	
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[2]/div/div[2]/div[4]/div[1]/a/span[1]")));
-		driver.findElement(By.xpath("/html/body/div[2]/div/div[2]/div[4]/div[1]/a/span[1]")).click();
+	wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("a.clearfix.fb-login-link")));
+	driver.findElement(By.cssSelector("a.clearfix.fb-login-link")).click();
 		
 		//Save all the pages and popup
 		Set<String> allpages=driver.getWindowHandles();
