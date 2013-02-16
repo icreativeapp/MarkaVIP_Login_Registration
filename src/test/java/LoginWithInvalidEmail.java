@@ -30,6 +30,7 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import java.util.Date;
 
 
 /**
@@ -95,7 +96,7 @@ public class LoginWithInvalidEmail implements SauceOnDemandSessionIdProvider, Sa
     @Test
     public void Login_With_Invalid_Email() throws Exception {
 
-        dddriver.get("http://markavip.com");
+        driver.get("http://markavip.com");
 	driver.findElement(By.className("do_modal")).click();
 	WebDriverWait wait=new WebDriverWait(driver, 25);
 	wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("fb-login-section")));
