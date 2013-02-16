@@ -129,6 +129,8 @@ driver.get("http://markavip.com");
 	}
 	
 
+	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("email")));
+	driver.findElement(By.id("email")).click();
 	driver.findElement(By.id("email")).sendKeys("ramisaleem17@gmail.com");
 	driver.findElement(By.id("pass")).sendKeys("Rami2017");
 	driver.findElement(By.id("u_0_1")).click();
