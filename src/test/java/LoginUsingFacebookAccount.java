@@ -100,7 +100,7 @@ public class LoginUsingFacebookAccount implements SauceOnDemandSessionIdProvider
     public void Login_Using_Facebook_Account() throws Exception {
 
 driver.get("http://markavip.com");
-	driver.findElementByClassName("do_modal").click();
+	driver.findElement(By.className("do_modal")).click();
 	
 	//Save Current Window Name
 	String markavipwindow= driver.getWindowHandle();
