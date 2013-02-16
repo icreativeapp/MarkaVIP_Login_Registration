@@ -1,5 +1,5 @@
 package test;
-import org.openqa.selenium.remote.CapabilityType;
+
 import com.saucelabs.common.SauceOnDemandAuthentication;
 import com.saucelabs.common.SauceOnDemandSessionIdProvider;
 import com.saucelabs.testng.SauceOnDemandAuthenticationProvider;
@@ -27,8 +27,11 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+import java.util.Iterator;
+import java.util.Set;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.CapabilityType;
 import java.util.Date;
 
 /**
@@ -36,7 +39,7 @@ import java.util.Date;
  * @author Rami Saleem
  */
 @Listeners({SauceOnDemandTestListener.class})
-public class LoginFromCampainPage implements SauceOnDemandSessionIdProvider, SauceOnDemandAuthenticationProvider {
+public class LoginUsingFacebookAccount implements SauceOnDemandSessionIdProvider, SauceOnDemandAuthenticationProvider {
 
     public SauceOnDemandAuthentication authentication;
 
@@ -89,46 +92,61 @@ public class LoginFromCampainPage implements SauceOnDemandSessionIdProvider, Sau
     public String getSessionId() {
         SessionId sessionId = ((RemoteWebDriver)driver).getSessionId();
         return (sessionId == null) ? null : sessionId.toString();
+
+sessionId="facebook";
+
     }
 
     @Test
-    public void Login_From_Campain_Page() throws Exception {
+    public void Login_Using_Facebook_Account() throws Exception {
 
 driver.get("http://markavip.com");
-	WebDriverWait wait=new WebDriverWait(driver, 55);
-	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("super-featured-wrapper")));
-	driver.findElement(By.id("super-featured-wrapper")).click();
+	driver.findElementByClassName("do_modal").click();
 	
-	wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("itemscount")));
+	//Save Current Window Name
+	String markavipwindow= driver.getWindowHandle();
 	
-	//Add Action Builder to hover the item's box
-	WebElement productbox=driver.findElement(By.className("item-link"));
-	//Hover the product's box
-	Actions builder = new Actions(driver);
-	builder.moveToElement(productbox).build().perform();
+	WebDriverWait wait=new WebDriverWait(driver, 25);
+	wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("login-form")));	
+	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[2]/div/div[2]/div[4]/div[1]/a/span[1]")));
+	driver.findElement(By.xpath("/html/body/div[2]/div/div[2]/div[4]/div[1]/a/span[1]")).click();
+	
+	//Save all the pages and popup
+	Set<String> allpages=driver.getWindowHandles();
+	Iterator<String> findit=allpages.iterator();
+	
+	//Select Facebook popup
+	while(findit.hasNext())
+	
+	{
+		String facebookpopup=findit.next().toString();
+		
+		if(!facebookpopup.contains(markavipwindow))
+			
+		{
+			driver.switchTo().window(facebookpopup);
+		}
+		
+	}
+	
 
-	driver.findElement(By.className("hover-view")).click();
+	driver.findElement(By.id("email")).sendKeys("ramisaleem17@gmail.com");
+	driver.findElement(By.id("pass")).sendKeys("Rami2017");
+	driver.findElement(By.id("u_0_1")).click();
 	
-	//Wait until showing the login pop-up
-	wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("fb-login-section")));
-
-	//This to prevent the browser Auto selection for Registration the text-box.
-	wait.until(ExpectedConditions.elementToBeClickable(By.id("register_email")));
+	//Back to MarkaVIP page
 	
-	//Enter login account info
-	driver.findElement(By.id("login_email")).click();
-	driver.findElement(By.id("login_email")).sendKeys("icreativeapp@gmail.com");
-	driver.findElement(By.id("pass")).sendKeys("147852");
-	driver.findElement(By.id("login-send")).click();
-	//driver.findElement(By.id("username_link")).getText();
-	String welcometext="Frid Norse";
-	
-wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("username_link")));
-Assert.assertEquals(driver.findElement(By.id("username_link")).getText(), welcometext);
-    	
+	driver.switchTo().window(markavipwindow);
 
+	/*driver.findElement(By.id("username_link")).getText();
+	String name2="Rami Saleem";
+	Assert.assertEquals(driver.findElement(By.id("username_link")).getText(), name2);*/
+		
 
-    }
+		
+
+}	
+
 
     @AfterMethod
     public void tearDown() throws Exception {

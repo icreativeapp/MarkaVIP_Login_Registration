@@ -109,6 +109,7 @@ public class LoginWithValidAccount implements SauceOnDemandSessionIdProvider, Sa
 	driver.findElement(By.id("pass")).sendKeys("147852");
 	driver.findElement(By.id("login-send")).click();
 	
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("username_link")));
 	driver.findElement(By.id("username_link")).getText();
 	String welcometext="Frid Norse";
 	Assert.assertEquals(driver.findElement(By.id("username_link")).getText(), welcometext);
