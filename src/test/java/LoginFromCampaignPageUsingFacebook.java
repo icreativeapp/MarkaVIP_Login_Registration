@@ -102,7 +102,7 @@ public class LoginFromCampaignPageUsingFacebook implements SauceOnDemandSessionI
 	
 	driver.get("http://markavip.com");
 	
-	WebDriverWait wait=new WebDriverWait(driver, 5);
+	WebDriverWait wait=new WebDriverWait(driver, 101);
 	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("super-featured-wrapper")));
 	driver.findElement(By.id("super-featured-wrapper")).click();
 	
@@ -148,6 +148,8 @@ public class LoginFromCampaignPageUsingFacebook implements SauceOnDemandSessionI
 
 
 	wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("email")));
+
+        wait.until(ExpectedConditions.elementToBeClickable(By.id("email")));
 		driver.findElement(By.id("email")).click();
 		driver.findElement(By.id("email")).sendKeys("ramisaleem17@gmail.com");
 		driver.findElement(By.id("pass")).sendKeys("Rami2017");
