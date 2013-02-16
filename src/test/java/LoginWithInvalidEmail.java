@@ -96,7 +96,7 @@ public class LoginWithInvalidEmail implements SauceOnDemandSessionIdProvider, Sa
     public void Login_With_Invalid_Email() throws Exception {
 
         dddriver.get("http://markavip.com");
-	driver.findElementByClassName("do_modal").click();
+	driver.findElement(By.className("do_modal")).click();
 	WebDriverWait wait=new WebDriverWait(driver, 25);
 	wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("fb-login-section")));
 

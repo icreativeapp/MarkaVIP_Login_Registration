@@ -96,7 +96,7 @@ public class LoginWithValidAccount implements SauceOnDemandSessionIdProvider, Sa
     public void Login_With_Valid_Account() throws Exception {
 
         driver.get("http://markavip.com");
-	driver.findElementByClassName("do_modal").click();
+	driver.findElement(By.className("do_modal")).click();
 	WebDriverWait wait=new WebDriverWait(driver, 25);
 	wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("fb-login-section")));
 

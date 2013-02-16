@@ -95,7 +95,7 @@ public class RegisterWithValidEmail implements SauceOnDemandSessionIdProvider, S
     public void Register_With_Valid_Email() throws Exception {
 
         driver.get("http://markavip.com");
-	driver.findElementByClassName("do_modal").click();
+	driver.findElement(By.className("do_modal")).click();
 	WebDriverWait wait=new WebDriverWait(driver, 25);
 	wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("fb-login-section")));
 
