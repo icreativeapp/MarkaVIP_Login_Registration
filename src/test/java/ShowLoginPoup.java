@@ -73,7 +73,6 @@ public class ShowLoginPoup implements SauceOnDemandSessionIdProvider, SauceOnDem
  DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
         desiredCapabilities.setBrowserName(System.getenv("SELENIUM_BROWSER"));
         desiredCapabilities.setVersion(System.getenv("SELENIUM_VERSION"));
-        desiredCapabilities.setCapability("name", method.getName());
         desiredCapabilities.setCapability(CapabilityType.PLATFORM, System.getenv("SELENIUM_PLATFORM"));
         desiredCapabilities.setCapability("name", method.getName());
         this.driver = new RemoteWebDriver(
