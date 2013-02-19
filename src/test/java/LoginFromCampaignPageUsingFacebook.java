@@ -98,9 +98,6 @@ public class LoginFromCampaignPageUsingFacebook implements SauceOnDemandSessionI
     @Test
     public void Login_From_Campaign_Page_Using_Facebook() throws Exception {
 
-
-
-	
 	driver.get("http://markavip.com");
 	
 	WebDriverWait wait=new WebDriverWait(driver, 101);
@@ -121,6 +118,9 @@ public class LoginFromCampaignPageUsingFacebook implements SauceOnDemandSessionI
 	
 
 	driver.findElement(By.cssSelector("div.product-image")).click();
+
+    	driver.findElement(By.className("do_modal")).click();
+
 
 	//Save Current Window Name
 		String markavipwindow= driver.getWindowHandle();
@@ -160,11 +160,12 @@ public class LoginFromCampaignPageUsingFacebook implements SauceOnDemandSessionI
 		
 		driver.switchTo().window(markavipwindow);
 
-		/*driver.findElement(By.id("username_link")).getText();
-		String name2="Rami Saleem";
-		Assert.assertEquals(driver.findElement(By.id("username_link")).getText(), name2);*/
-		
 
+		//driver.findElement(By.id("username_link")).getText();
+		String name2="Rami Saleem";                  
+	        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("span.welcome")));
+	        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("username_link")));
+		Assert.assertEquals(driver.findElement(By.id("username_link")).getText(), name2);
 		
 
 }	
